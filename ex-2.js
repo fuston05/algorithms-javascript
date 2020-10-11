@@ -14,13 +14,11 @@ console.log('times10 returns:', times10(9));
 const cache = {};
 
 const memoTimes10 = (n) => {
-  if(!cache[n]){
-    res= times10(n);
-    cache[n]= res;
+  if(n in cache){
+    return cache[n];
   }else{
-    res= cache[n];
+    return cache[n]= times10(n);
   }
-  return res;
 }
 
 console.log('~~~~~~~~~~~~~~TASK 2~~~~~~~~~~~~~~');
