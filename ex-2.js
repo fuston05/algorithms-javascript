@@ -4,26 +4,53 @@ const times10 = (n) => {
   return n * 10;
 };
 
-console.log('~~~~~~~~~~~~~~TASK 1~~~~~~~~~~~~~~');
-console.log('times10 returns:', times10(9));
+console.log("~~~~~~~~~~~~~~TASK 1~~~~~~~~~~~~~~");
+console.log("times10 returns:", times10(9));
 
-// Task 2: Use an object to cache the results of your times10 function. 
+// Task 2: Use an object to cache the results of your times10 function.
 // protip 1: Create a function that checks if the value for n has been calculated before.
 // protip 2: If the value for n has not been calculated, calculate and then save the result in the cache object.
 
 const cache = {};
 
 const memoTimes10 = (n) => {
-  if(n in cache){
+  if (n in cache) {
     return cache[n];
-  }else{
-    return cache[n]= times10(n);
+  } else {
+    return (cache[n] = times10(n));
   }
+};
+
+console.log("~~~~~~~~~~~~~~TASK 2~~~~~~~~~~~~~~");
+console.log("Task 2 calculated value:", memoTimes10(9)); // calculated
+console.log("Task 2 cached value:", memoTimes10(9)); // cached
+
+// task 3: clean up your global scope by moving your cache inside your function.
+// pro tip: use a closure to return a function that you can call later.
+
+const memoizedClosureTimes10 = () => {
+  let cache = {};
+
+  return (n) => {
+    if (n in cache) {
+      console.log("n is in cache");
+      return cache[n];
+    } else {
+      console.log("n is NOT in cache");
+      let res = n * 10;
+      cache[n] = res;
+      return res;
+    }
+  };
+};
+
+const memoClosureTimes10 = memoizedClosureTimes10();
+
+console.log("~~~~~~~~~~~~~~TASK 3~~~~~~~~~~~~~~");
+
+try {
+  console.log("Task 3 calculated value: ", memoClosureTimes10(9)); //calculated
+  console.log("Task 3 cached value: ", memoClosureTimes10(9)); //cached
+} catch (e) {
+  console.error("Task 3: ", e);
 }
-
-console.log('~~~~~~~~~~~~~~TASK 2~~~~~~~~~~~~~~');
-console.log('Task 2 calculated value:', memoTimes10(9));	// calculated
-console.log('Task 2 cached value:', memoTimes10(9));	// cached
-
-
-
