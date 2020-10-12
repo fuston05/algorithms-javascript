@@ -4,13 +4,24 @@
 
 // factorial: 5 * 4 * 3 * 2 * 1
 
-const recurseFactorial = (n) => {
-  // base case: if n === 0
-  if (n === 0) {
+const memoize= (fn) => {
+  let cache= {};
+  return (...args) => {
+    let n= args[0];
+    if(n in cache){
+      return cache[n]
+    }else{
+      return cache[n]= fn(n);
+    }
+  }
+}
+
+const recurseFactorial = memoize((x) => {
+  if(x === 0){
     return 1;
   }else{
-    return n * recurseFactorial(n-1);
+    return x * recurseFactorial(x-1);
   }
-};
+});
 
-console.log(recurseFactorial(3));
+console.log(recurseFactorial(10));
