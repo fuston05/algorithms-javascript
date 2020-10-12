@@ -58,25 +58,25 @@ try {
 
 // protip: Take advantage of the fact that parameters are saved in the closure as well, just like the cache from the previous example.
 const memoize = (cb) => {
-  const cache= {};
+  const cache = {};
 
   return (n) => {
-    if(n in cache){
+    if (n in cache) {
       return cache[n];
-    }else{
-      let res= cb(n);
-      cache[n]= res;
+    } else {
+      let res = cb(n);
+      cache[n] = res;
       return res;
     }
-  }
-}
+  };
+};
 
 // returned function from memoizedAdd
 const memoizedTimes10 = memoize(times10);
-console.log('~~~~~~~~~~~~~~TASK 4~~~~~~~~~~~~~~');
+console.log("~~~~~~~~~~~~~~TASK 4~~~~~~~~~~~~~~");
 try {
-  console.log('Task 4 calculated value:', memoizedTimes10(9));	// calculated
-  console.log('Task 4 cached value:', memoizedTimes10(9));	// cached
-} catch(e) {
-  console.error('Task 4:', e)
+  console.log("Task 4 calculated value:", memoizedTimes10(9)); // calculated
+  console.log("Task 4 cached value:", memoizedTimes10(9)); // cached
+} catch (e) {
+  console.error("Task 4:", e);
 }
