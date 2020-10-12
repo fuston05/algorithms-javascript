@@ -22,7 +22,7 @@ function joinElements(array, joinString) {
   for (let i = 1; i < array.length - 1; i++) {
     resultSoFar += array[i] + joinString;
   }
-  return resultSoFar;
+  return resultSoFar + array[array.length -1];
 }
 
 console.log(joinElements(["s", "cr", "t cod", " :) :)"], "e"));
