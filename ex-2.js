@@ -1,8 +1,6 @@
 // Task 1: Write a function, times10, that takes an argument, n, and multiples n times 10
 // a simple multiplication fn
-const times10 = (n) => {
-  return n * 10;
-};
+const times10 = (n) => n * 10;
 
 console.log("~~~~~~~~~~~~~~TASK 1~~~~~~~~~~~~~~");
 console.log("times10 returns:", times10(9));
@@ -37,7 +35,7 @@ const memoizedClosureTimes10 = () => {
       return cache[n];
     } else {
       console.log("n is NOT in cache");
-      let res = n * 10;
+      let res = times10(n);
       cache[n] = res;
       return res;
     }
@@ -53,4 +51,32 @@ try {
   console.log("Task 3 cached value: ", memoClosureTimes10(9)); //cached
 } catch (e) {
   console.error("Task 3: ", e);
+}
+
+// const times10 = (n) => (n * 10);
+// Task 4: Make your memo function generic and accept the times10 function as a callback rather than defining the n * 10 logic inside the if/else or pulling it in from the global scope.
+
+// protip: Take advantage of the fact that parameters are saved in the closure as well, just like the cache from the previous example.
+const memoize = (cb) => {
+  const cache= {};
+
+  return (n) => {
+    if(n in cache){
+      return cache[n];
+    }else{
+      let res= cb(n);
+      cache[n]= res;
+      return res;
+    }
+  }
+}
+
+// returned function from memoizedAdd
+const memoizedTimes10 = memoize(times10);
+console.log('~~~~~~~~~~~~~~TASK 4~~~~~~~~~~~~~~');
+try {
+  console.log('Task 4 calculated value:', memoizedTimes10(9));	// calculated
+  console.log('Task 4 cached value:', memoizedTimes10(9));	// cached
+} catch(e) {
+  console.error('Task 4:', e)
 }
