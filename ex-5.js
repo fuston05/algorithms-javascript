@@ -11,10 +11,19 @@ function linearSearch(list, item) {
   // return "not found";
 
   // *** filter method ***
-  res= list.filter(ele => {
-    return ele === item;
-  })
-  return res.length ? res : 'not found';
+  // res= list.filter(ele => {
+  //   return ele === item;
+  // })
+  // return res.length ? res : 'not found';
+
+  // *** foreach method ***
+  let ind = -1;
+  list.forEach((ele, i) => {
+    if (ele === item) {
+      ind = i;
+    }
+  });
+  return ind;
 }
 
 console.log(linearSearch([2, 6, 7, 90, 103], 90));
