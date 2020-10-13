@@ -4,42 +4,11 @@
 // protip: compare the arrays item by item and return the concatenated result
 
 const mergeSort= (arr) => {
-    // base case: arr.length === 1
-    if(arr.length === 1){
-      return arr;
-    }
 
-    let mid= Math.floor(arr.length/2);
-
-    // let left= arr.slice(0, mid)
-    const left= arr.slice(0, mid);
-    // let right= arr.slice(mid)
-    const right= arr.slice(mid);
-    const sortedLeft= mergeSort(left);
-    const sortedRight= mergeSort(right);
-
-
-    return merge(sortedLeft, sortedRight);
 }
 
 const merge= (left, right) => {
-  const res= [];
-  let leftPointer= 0;
-  let rightPointer= 0;
-
-  // iterate and compare 1st in each arr,
-  while(leftPointer < left.length && rightPointer < right.length){
-
-    if(left[leftPointer] < right[rightPointer]){
-      res.push(left[leftPointer]);
-      leftPointer++;
-
-    }else{
-      res.push(right[rightPointer]);
-      rightPointer++;
-    }
-  }
-  return res.concat(left.slice(leftPointer)).concat(right.slice(rightPointer));
+  
 }
 
 
